@@ -6,6 +6,13 @@ body
   background-color: lightgrey
   background-image: url("../asset/image/white_grid_paper-background_pattern.jpg")
 
+button[type='submit']
+  font-size: 0.9em
+  padding: 6px 12px
+  margin: auto
+  display: block
+  margin-top: 12px
+
 table
   width: 100%
   border: solid 1px grey
@@ -60,7 +67,7 @@ header
       box-sizing: border-box
       margin: 0px
       font-size: 0.8em
-    button
+    button[type='submit']
       font-size: 0.8em
       padding: 3px
       height: 25px
@@ -75,10 +82,25 @@ header
   overflow: hidden
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
   border-radius: 8px
-  
   padding-bottom: 6px
   background-color: white
   font-family: sans-serif
+  &:hover
+    @keyframes moveup
+      from
+        top: 0px
+      to
+        top: -140px
+    p 
+      white-space: pre-wrap
+      max-height: none
+    div
+      animation: moveup 0.5s ease-out 0s 1 normal forwards
+    .hidden
+      display: block
+  div
+    position: relative
+    top: 0px
   img
     height: 180px
     width: 120px
@@ -91,10 +113,14 @@ header
     text-overflow: ellipsis
     line-height: 1.2em
     max-height: 1.2em
+  button
+    margin: 0.3em 8px
   .author
     color: #757575
   .year
     font-size: 0.8em
+  .hidden
+    display: none
 
 .books-container
   display: flex
@@ -201,12 +227,5 @@ header
 label
   display: block
   margin-bottom: 6px
-  margin-top: 12px
-
-button 
-  font-size: 0.9em
-  padding: 6px 12px
-  margin: auto
-  display: block
   margin-top: 12px
   

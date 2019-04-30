@@ -7,6 +7,14 @@ body {
   background-image: url("../asset/image/white_grid_paper-background_pattern.jpg");
 }
 
+button[type='submit'] {
+  font-size: 0.9em;
+  padding: 6px 12px;
+  margin: auto;
+  display: block;
+  margin-top: 12px;
+}
+
 table {
   width: 100%;
   border: solid 1px grey;
@@ -84,7 +92,7 @@ header div input[type='text'] {
   font-size: 0.8em;
 }
 
-header div button {
+header div button[type='submit'] {
   font-size: 0.8em;
   padding: 3px;
   height: 25px;
@@ -106,6 +114,43 @@ header div button {
   font-family: sans-serif;
 }
 
+@-webkit-keyframes moveup {
+  from {
+    top: 0px;
+  }
+  to {
+    top: -140px;
+  }
+}
+
+@keyframes moveup {
+  from {
+    top: 0px;
+  }
+  to {
+    top: -140px;
+  }
+}
+
+.single-book:hover p {
+  white-space: pre-wrap;
+  max-height: none;
+}
+
+.single-book:hover div {
+  -webkit-animation: moveup 0.5s ease-out 0s 1 normal forwards;
+          animation: moveup 0.5s ease-out 0s 1 normal forwards;
+}
+
+.single-book:hover .hidden {
+  display: block;
+}
+
+.single-book div {
+  position: relative;
+  top: 0px;
+}
+
 .single-book img {
   height: 180px;
   width: 120px;
@@ -122,12 +167,20 @@ header div button {
   max-height: 1.2em;
 }
 
+.single-book button {
+  margin: 0.3em 8px;
+}
+
 .single-book .author {
   color: #757575;
 }
 
 .single-book .year {
   font-size: 0.8em;
+}
+
+.single-book .hidden {
+  display: none;
 }
 
 .books-container {
@@ -294,14 +347,6 @@ header div button {
 label {
   display: block;
   margin-bottom: 6px;
-  margin-top: 12px;
-}
-
-button {
-  font-size: 0.9em;
-  padding: 6px 12px;
-  margin: auto;
-  display: block;
   margin-top: 12px;
 }
 /*# sourceMappingURL=index.css.map */
