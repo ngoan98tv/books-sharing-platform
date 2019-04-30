@@ -1,0 +1,212 @@
+body 
+  margin: auto
+  padding: 0
+  max-width: 780px
+  border: solid 1px black
+  background-color: lightgrey
+  background-image: url("../asset/image/white_grid_paper-background_pattern.jpg")
+
+table
+  width: 100%
+  border: solid 1px grey
+
+  td, th
+    border: solid 1px grey
+    padding: 6px
+
+footer 
+  background-color: black
+  color: white
+  text-align: center
+  padding: 12px
+  div, p
+    margin: 6px 0px
+  a
+    color: cyan
+    line-height: 1.5
+    span
+      color: white
+      text-decoration: none
+    &:after
+      content: '|'
+      margin: 0px 8px
+    &:last-child
+      &:after
+        content: ''
+        margin: 0px
+
+
+main 
+  background-color: white
+  padding: 24px
+
+header
+  background-color: black
+  color: white
+  padding: 12px 0px
+  text-align: center
+  h1
+    margin: 12px
+  a
+    color: cyan
+    margin: 6px
+    line-height: 1.5
+  div
+    margin-top: 10px
+    input[type='text']
+      width: 200px
+      padding: 3px
+      height: 25px
+      box-sizing: border-box
+      margin: 0px
+      font-size: 0.8em
+    button
+      font-size: 0.8em
+      padding: 3px
+      height: 25px
+      margin: 0px
+      display: inline
+
+.single-book
+  width: 120px
+  height: 250px
+  margin: 12px
+  cursor: pointer
+  overflow: hidden
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
+  border-radius: 8px
+  
+  padding-bottom: 6px
+  background-color: white
+  font-family: sans-serif
+  img
+    height: 180px
+    width: 120px
+  p
+    margin: 0.3em 8px
+    font-size: 0.9em
+    font-weight: 400
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+    line-height: 1.2em
+    max-height: 1.2em
+  .author
+    color: #757575
+  .year
+    font-size: 0.8em
+
+.books-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: flex-start
+
+.paging
+  background-color: white
+  padding: 12px 24px
+  margin: 0px
+  text-align: center
+  a
+    color: blue
+    border: solid 1px grey
+    padding: 3px 6px
+    font-weight: 600
+    text-decoration: none
+
+.subheader 
+  margin: 12px 0px
+  h2
+    margin-top: 12px
+    margin-bottom: 6px
+    span
+      text-decoration: underline
+  &:after
+    content: "------"
+
+.login-form
+  max-width: 300px
+  margin: auto
+  fieldset
+    padding: 12px
+    margin-bottom: 12vh
+    margin-top: 8vh
+    background-color: rgba(255,255,255,0.5)
+    legend
+      font-size: 18px
+      padding: 0px 8px
+    input
+      width: 100%
+      display: block
+      box-sizing: border-box
+      margin-bottom: 6px
+      padding: 6px
+      background-color: rgb(232,240,254)
+    em
+      display: block
+      font-size: 0.9em
+      margin-top: 12px
+      text-align: center
+    .warning
+      margin: 12px 0px
+      color: red
+
+.top-uploaders
+  margin-bottom: 12px
+  div
+    display: flex
+    flex-wrap: wrap
+    a
+      display: block
+      margin: 6px
+      background-color: black
+      color: white
+      word-break: keep-all
+      text-decoration: none
+      padding: 3px 6px
+      border-radius: 5px
+      span
+        color: cyan
+        &:before
+          content: '| '
+      
+.upload
+  form
+    max-width: 400px
+    margin: auto
+    .complete
+      margin-top: 18px
+      color: blue
+    .error
+      margin-top: 18px
+      color: red
+    fieldset
+      margin: 24px 6px
+      padding: 16px
+      legend
+        font-size: 18px
+      input
+        display: block
+        width: 100%
+        box-sizing: border-box
+        margin-bottom: 8px
+        padding: 6px
+      input[type='file']
+        padding: 0px
+      select
+        display: block
+        width: 100%
+        margin-bottom: 8px
+        padding: 3px
+label
+  display: block
+  margin-bottom: 6px
+  margin-top: 12px
+
+button 
+  font-size: 0.9em
+  padding: 6px 12px
+  margin: auto
+  display: block
+  margin-top: 12px
+  

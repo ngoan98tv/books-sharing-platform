@@ -1,0 +1,307 @@
+body {
+  margin: auto;
+  padding: 0;
+  max-width: 780px;
+  border: solid 1px black;
+  background-color: lightgrey;
+  background-image: url("../asset/image/white_grid_paper-background_pattern.jpg");
+}
+
+table {
+  width: 100%;
+  border: solid 1px grey;
+}
+
+table td, table th {
+  border: solid 1px grey;
+  padding: 6px;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+footer div, footer p {
+  margin: 6px 0px;
+}
+
+footer a {
+  color: cyan;
+  line-height: 1.5;
+}
+
+footer a span {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:after {
+  content: '|';
+  margin: 0px 8px;
+}
+
+footer a:last-child:after {
+  content: '';
+  margin: 0px;
+}
+
+main {
+  background-color: white;
+  padding: 24px;
+}
+
+header {
+  background-color: black;
+  color: white;
+  padding: 12px 0px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 12px;
+}
+
+header a {
+  color: cyan;
+  margin: 6px;
+  line-height: 1.5;
+}
+
+header div {
+  margin-top: 10px;
+}
+
+header div input[type='text'] {
+  width: 200px;
+  padding: 3px;
+  height: 25px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  font-size: 0.8em;
+}
+
+header div button {
+  font-size: 0.8em;
+  padding: 3px;
+  height: 25px;
+  margin: 0px;
+  display: inline;
+}
+
+.single-book {
+  width: 120px;
+  height: 250px;
+  margin: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding-bottom: 6px;
+  background-color: white;
+  font-family: sans-serif;
+}
+
+.single-book img {
+  height: 180px;
+  width: 120px;
+}
+
+.single-book p {
+  margin: 0.3em 8px;
+  font-size: 0.9em;
+  font-weight: 400;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.2em;
+  max-height: 1.2em;
+}
+
+.single-book .author {
+  color: #757575;
+}
+
+.single-book .year {
+  font-size: 0.8em;
+}
+
+.books-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.paging {
+  background-color: white;
+  padding: 12px 24px;
+  margin: 0px;
+  text-align: center;
+}
+
+.paging a {
+  color: blue;
+  border: solid 1px grey;
+  padding: 3px 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.subheader {
+  margin: 12px 0px;
+}
+
+.subheader h2 {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.subheader h2 span {
+  text-decoration: underline;
+}
+
+.subheader:after {
+  content: "------";
+}
+
+.login-form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.login-form fieldset {
+  padding: 12px;
+  margin-bottom: 12vh;
+  margin-top: 8vh;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-form fieldset legend {
+  font-size: 18px;
+  padding: 0px 8px;
+}
+
+.login-form fieldset input {
+  width: 100%;
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 6px;
+  padding: 6px;
+  background-color: #e8f0fe;
+}
+
+.login-form fieldset em {
+  display: block;
+  font-size: 0.9em;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.login-form fieldset .warning {
+  margin: 12px 0px;
+  color: red;
+}
+
+.top-uploaders {
+  margin-bottom: 12px;
+}
+
+.top-uploaders div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.top-uploaders div a {
+  display: block;
+  margin: 6px;
+  background-color: black;
+  color: white;
+  word-break: keep-all;
+  text-decoration: none;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+.top-uploaders div a span {
+  color: cyan;
+}
+
+.top-uploaders div a span:before {
+  content: '| ';
+}
+
+.upload form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.upload form .complete {
+  margin-top: 18px;
+  color: blue;
+}
+
+.upload form .error {
+  margin-top: 18px;
+  color: red;
+}
+
+.upload form fieldset {
+  margin: 24px 6px;
+  padding: 16px;
+}
+
+.upload form fieldset legend {
+  font-size: 18px;
+}
+
+.upload form fieldset input {
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 8px;
+  padding: 6px;
+}
+
+.upload form fieldset input[type='file'] {
+  padding: 0px;
+}
+
+.upload form fieldset select {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 3px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+
+button {
+  font-size: 0.9em;
+  padding: 6px 12px;
+  margin: auto;
+  display: block;
+  margin-top: 12px;
+}
+/*# sourceMappingURL=index.css.map */
