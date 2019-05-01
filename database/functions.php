@@ -16,23 +16,52 @@ function connect_db() {
     return $conn;
 }
 
-function get_books_all() {
+function get_books_all_total() {
     $conn = connect_db();
-    $result = $conn->query("SELECT * FROM book b JOIN category c ON b.category_id = c.id");
+    $result = $conn->query("SELECT COUNT(*) as num FROM book");
+    $total = $result->fetch_assoc();
+    return $total['num'];
+}
+
+function get_books_all($page, $books_per_page) {
+    $conn = connect_db();
+    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+    FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
+    LIMIT ".($page*$books_per_page).",$books_per_page");
     $conn->close();
     return $result;
 }
 
-function get_books_by_cat($categoryId) {
+function get_books_by_cat_total($categoryId) {
     $conn = connect_db();
-    $result = $conn->query("SELECT * FROM book b JOIN category c ON b.category_id = c.id WHERE b.category_id = $categoryId");
+    $result = $conn->query("SELECT COUNT(*) as num FROM book WHERE category_id = $categoryId")  or die($conn->error);
+    $total = $result->fetch_assoc();
+    return $total['num'];
+}
+
+function get_books_by_cat($categoryId, $page, $books_per_page) {
+    $conn = connect_db();
+    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+        FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
+        WHERE b.category_id = $categoryId
+        LIMIT ".($page*$books_per_page).",$books_per_page") or die($conn->error);
     $conn->close();
     return $result;
 }
 
-function get_books_by_uploader($uploaderId) {
+function get_books_by_uploader_total($uploaderId) {
     $conn = connect_db();
-    $result = $conn->query("SELECT * FROM book b JOIN category c ON b.category_id = c.id WHERE b.uploader_id = $uploaderId");
+    $result = $conn->query("SELECT COUNT(*) as num FROM book WHERE uploader_id = $uploaderId");
+    $total = $result->fetch_assoc();
+    return $total['num'];
+}
+
+function get_books_by_uploader($uploaderId, $page, $books_per_page) {
+    $conn = connect_db();
+    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+        FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id
+        WHERE b.uploader_id = $uploaderId
+        LIMIT ".($page*$books_per_page).",$books_per_page");
     $conn->close();
     return $result;
 }

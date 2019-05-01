@@ -144,6 +144,19 @@ header div button[type='submit'] {
 
 .single-book:hover .hidden {
   display: block;
+  font-size: 0.8em;
+}
+
+.single-book:hover .title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.single-book:hover .author {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .single-book div {
@@ -161,22 +174,21 @@ header div button[type='submit'] {
   font-size: 0.9em;
   font-weight: 400;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 1.2em;
-  max-height: 1.2em;
 }
 
-.single-book button {
-  margin: 0.3em 8px;
+.single-book .title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .single-book .author {
   color: #757575;
-}
-
-.single-book .year {
-  font-size: 0.8em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .single-book .hidden {
@@ -203,6 +215,10 @@ header div button[type='submit'] {
   padding: 12px 24px;
   margin: 0px;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .paging a {
@@ -211,6 +227,10 @@ header div button[type='submit'] {
   padding: 3px 6px;
   font-weight: 600;
   text-decoration: none;
+}
+
+.paging .disabled {
+  color: grey;
 }
 
 .subheader {

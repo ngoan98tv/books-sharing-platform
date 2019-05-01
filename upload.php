@@ -3,7 +3,8 @@
     $_SESSION['page_title'] = 'Upload';
     $_SESSION['curr_page'] = $_SERVER['REQUEST_URI'];
     require "templates/header.php";
-    require "templates/single_book.php"
+    require "templates/single_book.php";
+    require "templates/paging.php";
 ?>
 <main>
     <div class='top-uploaders'>
@@ -17,16 +18,19 @@
             ?>
         </div>
     </div>
-    <?php if ($_REQUEST['uploader']) { 
+    <?php if (isset($_REQUEST['uploader'])) { 
+        $page1 = $_REQUEST['page1'] ?? 0;
+        $item_per_page1 = 5;
         $uploader = get_uploader($_REQUEST['uploader']);
-        $books = get_books_by_uploader($uploader['id']);
+        $total1 = get_books_by_uploader_total($uploader['id']);
+        $books = get_books_by_uploader($uploader['id'],$page1,$item_per_page1);
     ?>
         <hr>
         <div class="subheader">
             <h2>
                 Books uploaded by 
                 <span><?php echo $uploader['name']; ?></span>
-                (<?php echo $books->num_rows ?? 0; ?>)
+                (<?php echo $books->num_rows." of $total1"; ?>)
             </h2>
         </div>
         <div class='books-container'>
@@ -37,6 +41,9 @@
             }
         ?>
         </div>
+        <?php 
+            show_paging('page1', $page1, $total1/$item_per_page1, $_REQUEST['uploader'] ? '&uploader='.$_REQUEST['uploader'] : '');
+        ?>
     <?php } ?>
     <hr>
     <div class='upload'>
@@ -74,19 +81,26 @@
             </div>
         <?php } ?>
     </div>
-    <?php if ($_SESSION['logged_in']) { $books = get_books_by_uploader($_SESSION['uploader']['id']);  ?>
+    <?php if ($_SESSION['logged_in']) { 
+        $page2 = $_REQUEST['page2'] ?? 0;
+        $item_per_page2 = 10;
+        $total2 = get_books_by_uploader_total($_SESSION['uploader']['id']);
+        $books = get_books_by_uploader($_SESSION['uploader']['id'],$page2,$item_per_page2);
+    ?>
         <hr>
         <div class="subheader">
-            <h2>Books uploaded by you (<?php echo $books->num_rows ?? '0'; ?>)</h2>
+            <h2>Books uploaded by you (<?php echo $books->num_rows." of $total2"; ?>)</h2>
         </div>
         <div class='books-container'>
         <?php 
-            
             while ($book = $books->fetch_assoc()) {
                 show_a_book($book);
             }
         ?>
         </div>
+        <?php
+            show_paging('page2', $page2, $total2/$item_per_page2,$_REQUEST['uploader'] ? '&uploader='.$_REQUEST['uploader'] : '');
+        ?>
     <?php } ?>
 </main>
 <?php require "templates/footer.php"; ?>
