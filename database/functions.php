@@ -81,6 +81,15 @@ function get_category_by_id($id) {
     return $category['name'] ?? "";
 }
 
+function new_category($name) {
+    $conn = connect_db();
+    $conn->query("INSERT INTO category (name) VALUES ('$name')") or die($conn->error);
+    $result = $conn->query("SELECT * FROM category WHERE name = '$name'") or die($conn->error);
+    $conn->close();
+    $category = $result->fetch_assoc();
+    return $category['id'];
+}
+
 function add_book($book) {
     $conn = connect_db();
     if ($book['year']) {
@@ -178,4 +187,6 @@ function get_top_uploaders() {
 function hash_password($password, $username) {
     return sha1(md5($username.$password).$password);
 }
+
+
 ?>

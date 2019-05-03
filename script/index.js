@@ -5,3 +5,11 @@ const handleUploadImageChange = function(event) {
         label.innerHTML = file.name;
     }
 }
+
+document.getElementById('categoryId').addEventListener('change', (event) => {
+    if (event.target.value === 'new') {
+        document.getElementById('categoryName').style.display = 'block';
+    } else {
+        document.getElementById('categoryName').style.display = 'none';
+    }
+});

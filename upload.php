@@ -68,7 +68,9 @@
                                 echo "<option value='$category[id]'>$category[name]</option>";
                             }
                         ?>
+                        <option value="new">New category...</option>
                     </select>
+                    <input type="text" id="categoryName" name="categoryName" placeholder="New category..." style="display: none">
                     <label for='image'>Cover image (*)</label>
                     <input type="file" required id='image' name="image" accept="image/*"/>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
