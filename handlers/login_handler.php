@@ -5,7 +5,7 @@
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = hash_password($_POST['password'],$_POST['username']);
         
         switch (check_login($username, $password)) {
             case 1:

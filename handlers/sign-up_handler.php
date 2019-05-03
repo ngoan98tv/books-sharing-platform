@@ -1,12 +1,15 @@
 <?php
+
 if (isset($_POST['username'])) {
     $uploader = array(
         'username' => $_POST['username'],
         'name' => $_POST['name'],
         'email' => $_POST['email'],
-        'password' => $_POST['password'],
-        'password_confirm' => $_POST['comfirm-password']
+        'password' => hash_password($_POST['password'],$_POST['username']),
+        'password_confirm' => hash_password($_POST['comfirm-password'],$_POST['username'])
     );
+
+    
 
     if (!is_valid_username($uploader['username'])) {
         echo "<div class='warning'>Username already taken, please try another.</div>";

@@ -174,4 +174,8 @@ function get_top_uploaders() {
     $conn->close();
     return $result;
 }
+
+function hash_password($password, $username) {
+    return sha1(md5($username.$password).$password);
+}
 ?>

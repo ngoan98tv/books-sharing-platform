@@ -8,7 +8,7 @@
 <main>
     <?php
         $page = $_REQUEST['page'] ?? 0;
-        $item_per_page = 20;
+        $item_per_page = 15;
         $total = isset($_REQUEST['category']) 
             ? get_books_by_cat_total($_REQUEST['category'])
             : get_books_all_total();

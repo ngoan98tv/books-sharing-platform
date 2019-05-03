@@ -42,7 +42,8 @@
         ?>
         </div>
         <?php 
-            show_paging('page1', $page1, $total1/$item_per_page1, $_REQUEST['uploader'] ? '&uploader='.$_REQUEST['uploader'] : '');
+            if ($total1 != 0)
+                show_paging('page1', $page1, $total1/$item_per_page1, $_REQUEST['uploader'] ? '&uploader='.$_REQUEST['uploader'] : '');
         ?>
     <?php } ?>
     <hr>
@@ -99,6 +100,7 @@
         ?>
         </div>
         <?php
+        if ($total2 != 0)
             show_paging('page2', $page2, $total2/$item_per_page2,$_REQUEST['uploader'] ? '&uploader='.$_REQUEST['uploader'] : '');
         ?>
     <?php } ?>

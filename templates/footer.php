@@ -8,7 +8,7 @@
         <?php }?>
         <a href="upload.php">Upload</a>
     </div>
-    <p>Ngoan Tran &copy; 2019</p>
+    <p><a href='https://ngoan98tv.github.io' style='color: white; text-decoration: none;'>Ngoan Tran</a> &copy; 2019</p>
 </footer>
 <script src="./script/index.js"></script>
 </body>
