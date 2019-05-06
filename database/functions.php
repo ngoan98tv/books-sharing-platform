@@ -188,5 +188,4 @@ function hash_password($password, $username) {
     return sha1(md5($username.$password).$password);
 }
 
-
 ?>
