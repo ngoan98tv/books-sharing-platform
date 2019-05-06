@@ -43,6 +43,7 @@
         ?>
     </div>
     <?php 
+    if ($total > 0)
         show_paging(
             'page',
             $page, 

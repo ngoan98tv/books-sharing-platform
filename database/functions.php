@@ -194,7 +194,7 @@ function get_search_total($keyword) {
     $conn = connect_db();
 
     $result = $conn->query("SELECT COUNT(*) as num FROM book 
-            WHERE title LIKE '%$keyword%';") or die("get_search_total: ".$conn->error);
+            WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%';") or die("get_search_total: ".$conn->error);
     
     $total = $result->fetch_assoc();
 
@@ -206,7 +206,7 @@ function get_search_result($keyword, $page, $books_per_page) {
 
     $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
     FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
-    WHERE title LIKE '%$keyword%'
+    WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%'
     LIMIT ".($page*$books_per_page).",$books_per_page");
 
     return $result;
