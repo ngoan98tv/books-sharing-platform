@@ -13,7 +13,7 @@
     <label for='password'>Password (*)</label>
     <input type="password" name="password" id="password" placeholder="Password" required>
     <div class="warning"><?php require "handlers/login_handler.php"; ?></div>
-    <button type="submit">Submit</button>
+    <button class="submit-btn" type="submit">Submit</button>
     <em>Your don't have any account?
     <a href="sign-up.php?location=<?php echo $_REQUEST['location']; ?>">Sign up</a></em>
     </fieldset>

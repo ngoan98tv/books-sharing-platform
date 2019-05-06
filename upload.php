@@ -74,7 +74,7 @@
                     <label for='image'>Cover image (*)</label>
                     <input type="file" required id='image' name="image" accept="image/*"/>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="submit-btn">Submit</button>
                 </fieldset>
             </form>
         <?php } else { ?>

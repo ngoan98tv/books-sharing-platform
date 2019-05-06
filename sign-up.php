@@ -19,13 +19,11 @@
     <input type="email" name="email" id="email" placeholder="Email..." required
         value="<?php echo $uploader ? $uploader['email'] : ''; ?>">
     <label for='password'>Password (*)</label>
-    <input type="password" name="password" id="password" placeholder="Password..." required
-        value="<?php echo $uploader ? $uploader['password'] : ''; ?>">
+    <input type="password" name="password" id="password" placeholder="Password..." required>
     <label for='comfirm-password'>Re-enter password (*)</label>
-    <input type="password" name="comfirm-password" id="comfirm-password"  placeholder="Re-enter password..." required
-        value="<?php echo $uploader ? $uploader['password_confirm'] : ''; ?>">
+    <input type="password" name="comfirm-password" id="comfirm-password"  placeholder="Re-enter password..." required>
     
-    <button type="submit">Submit</button>
+    <button type="submit" class="submit-btn">Submit</button>
     <em>Your already have an account?
     <a href="login.php?location=<?php echo $_REQUEST['location'];?>">Log in</a></em>
     </fieldset>

@@ -2,6 +2,7 @@
   display: -webkit-box
   -webkit-line-clamp: $num
   -webkit-box-orient: vertical
+  max-height: $num*1.2em
   
   
 body 
@@ -12,8 +13,8 @@ body
   background-color: lightgrey
   background-image: url("../asset/image/white_grid_paper-background_pattern.jpg")
 
-button[type='submit']
-  font-size: 0.9em
+.submit-btn
+  font-size: 0.8em
   padding: 6px 12px
   margin: auto
   display: block
@@ -68,15 +69,11 @@ header
     margin-top: 10px
     input[type='text']
       width: 200px
-      padding: 3px
-      height: 25px
+    button[type='submit'], input[type='text']
+      font-size: 0.8em
       box-sizing: border-box
-      margin: 0px
-      font-size: 0.8em
-    button[type='submit']
-      font-size: 0.8em
       padding: 3px
-      height: 25px
+      min-height: 25px
       margin: 0px
       display: inline
 
@@ -96,10 +93,9 @@ header
       from
         top: 0px
       to
-        top: -140px
+        top: -160px
     p 
       white-space: pre-wrap
-      max-height: none
     div
       animation: moveup 0.5s ease-out 0s 1 normal forwards
     .hidden
@@ -172,16 +168,20 @@ header
     legend
       font-size: 18px
       padding: 0px 8px
+    label
+      font-size: 15px
     input
       width: 100%
       display: block
       box-sizing: border-box
       margin-bottom: 6px
+      font-size: 15px
       padding: 6px
+      color: #131313
       background-color: rgb(232,240,254)
     em
       display: block
-      font-size: 0.9em
+      font-size: 12px
       margin-top: 12px
       text-align: center
     .warning

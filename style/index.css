@@ -7,8 +7,8 @@ body {
   background-image: url("../asset/image/white_grid_paper-background_pattern.jpg");
 }
 
-button[type='submit'] {
-  font-size: 0.9em;
+.submit-btn {
+  font-size: 0.8em;
   padding: 6px 12px;
   margin: auto;
   display: block;
@@ -84,18 +84,14 @@ header div {
 
 header div input[type='text'] {
   width: 200px;
-  padding: 3px;
-  height: 25px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0px;
-  font-size: 0.8em;
 }
 
-header div button[type='submit'] {
+header div button[type='submit'], header div input[type='text'] {
   font-size: 0.8em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 3px;
-  height: 25px;
+  min-height: 25px;
   margin: 0px;
   display: inline;
 }
@@ -119,7 +115,7 @@ header div button[type='submit'] {
     top: 0px;
   }
   to {
-    top: -140px;
+    top: -160px;
   }
 }
 
@@ -128,13 +124,12 @@ header div button[type='submit'] {
     top: 0px;
   }
   to {
-    top: -140px;
+    top: -160px;
   }
 }
 
 .single-book:hover p {
   white-space: pre-wrap;
-  max-height: none;
 }
 
 .single-book:hover div {
@@ -151,12 +146,14 @@ header div button[type='submit'] {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  max-height: 3.6em;
 }
 
 .single-book:hover .author {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  max-height: 3.6em;
 }
 
 .single-book div {
@@ -182,6 +179,7 @@ header div button[type='submit'] {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  max-height: 2.4em;
 }
 
 .single-book .author {
@@ -189,6 +187,7 @@ header div button[type='submit'] {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  max-height: 1.2em;
 }
 
 .single-book .hidden {
@@ -267,19 +266,25 @@ header div button[type='submit'] {
   padding: 0px 8px;
 }
 
+.login-form fieldset label {
+  font-size: 15px;
+}
+
 .login-form fieldset input {
   width: 100%;
   display: block;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin-bottom: 6px;
+  font-size: 15px;
   padding: 6px;
+  color: #131313;
   background-color: #e8f0fe;
 }
 
 .login-form fieldset em {
   display: block;
-  font-size: 0.9em;
+  font-size: 12px;
   margin-top: 12px;
   text-align: center;
 }
