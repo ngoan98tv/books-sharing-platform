@@ -34,7 +34,8 @@ function get_books_all($page, $books_per_page) {
 
 function get_books_by_cat_total($categoryId) {
     $conn = connect_db();
-    $result = $conn->query("SELECT COUNT(*) as num FROM book WHERE category_id = $categoryId")  or die($conn->error);
+    $result = $conn->query("SELECT COUNT(*) as num FROM book WHERE category_id = $categoryId") 
+        or die("get_books_by_cat_total: ".$conn->error);
     $total = $result->fetch_assoc();
     return $total['num'];
 }
@@ -44,7 +45,8 @@ function get_books_by_cat($categoryId, $page, $books_per_page) {
     $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
         FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
         WHERE b.category_id = $categoryId
-        LIMIT ".($page*$books_per_page).",$books_per_page") or die($conn->error);
+        LIMIT ".($page*$books_per_page).",$books_per_page")
+            or die("get_books_by_cat: ".$conn->error);
     $conn->close();
     return $result;
 }
@@ -186,6 +188,28 @@ function get_top_uploaders() {
 
 function hash_password($password, $username) {
     return sha1(md5($username.$password).$password);
+}
+
+function get_search_total($keyword) {
+    $conn = connect_db();
+
+    $result = $conn->query("SELECT COUNT(*) as num FROM book 
+            WHERE title LIKE '%$keyword%';") or die("get_search_total: ".$conn->error);
+    
+    $total = $result->fetch_assoc();
+
+    return $total['num'];
+}
+
+function get_search_result($keyword, $page, $books_per_page) {
+    $conn = connect_db();
+
+    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+    FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
+    WHERE title LIKE '%$keyword%'
+    LIMIT ".($page*$books_per_page).",$books_per_page");
+
+    return $result;
 }
 
 ?>

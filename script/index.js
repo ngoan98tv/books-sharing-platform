@@ -11,13 +11,18 @@ if (category)
 
 const search = document.querySelector("input[name='search']");
 
-if (search)
-    search.addEventListener('change', (event) => {
-        let keyword = event.target.value;
+if (false)
+    search.addEventListener('keypress', (event) => {
+        const keyword = event.target.value;
+        const datalist = document.getElementById('hints');
         fetch(`api/search-hint.php?search=${keyword}`, {method: 'GET'})
             .then(response => {
                 response.json().then(json => {
-                    console.log(json);
+                    json.forEach(element => {
+                        // const option = document.createElement('OPTION');
+                        // option.value = element;
+                        // datalist.append(option);
+                    });
                 });
             }).catch(err => {
                 console.log(err);
