@@ -73,6 +73,8 @@
                     <input type="text" id="categoryName" name="categoryName" placeholder="New category..." style="display: none">
                     <label for='image'>Cover image (*)</label>
                     <input type="file" required id='image' name="image" accept="image/*"/>
+                    <label for='file'>File (PDF only) (*)</label>
+                    <input type="file" required id='file' name="file" accept="application/pdf"/>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
                     <button type="submit" class="submit-btn">Submit</button>
                 </fieldset>
@@ -97,7 +99,7 @@
         <div class='books-container'>
         <?php 
             while ($book = $books->fetch_assoc()) {
-                show_a_book($book);
+                show_a_book($book, true);
             }
         ?>
         </div>

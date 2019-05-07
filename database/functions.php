@@ -16,6 +16,13 @@ function connect_db() {
     return $conn;
 }
 
+function get_book_by_id($id) {
+    $conn = connect_db();
+    $result = $conn->query("SELECT * FROM book WHERE id = '$id'");
+    $book = $result->fetch_assoc();
+    return $book;
+}
+
 function get_books_all_total() {
     $conn = connect_db();
     $result = $conn->query("SELECT COUNT(*) as num FROM book");
@@ -25,9 +32,9 @@ function get_books_all_total() {
 
 function get_books_all($page, $books_per_page) {
     $conn = connect_db();
-    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+    $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
     FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
-    LIMIT ".($page*$books_per_page).",$books_per_page");
+    LIMIT ".($page*$books_per_page).",$books_per_page") or die($conn->error);
     $conn->close();
     return $result;
 }
@@ -42,7 +49,7 @@ function get_books_by_cat_total($categoryId) {
 
 function get_books_by_cat($categoryId, $page, $books_per_page) {
     $conn = connect_db();
-    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+    $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
         FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
         WHERE b.category_id = $categoryId
         LIMIT ".($page*$books_per_page).",$books_per_page")
@@ -60,7 +67,7 @@ function get_books_by_uploader_total($uploaderId) {
 
 function get_books_by_uploader($uploaderId, $page, $books_per_page) {
     $conn = connect_db();
-    $result = $conn->query("SELECT title, author, year, c.name as category, cover_url, file_url, u.name as uploader
+    $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
         FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id
         WHERE b.uploader_id = $uploaderId
         LIMIT ".($page*$books_per_page).",$books_per_page");
@@ -114,6 +121,12 @@ function add_book($book) {
                 '$book[categoryId]', 
                 '$book[fileURL]')") or die($conn->error);
     }
+    $conn->close();
+}
+
+function delete_book($id) {
+    $conn = connect_db();
+    $conn->query("DELETE FROM book WHERE id = '$id'");
     $conn->close();
 }
 

@@ -6,7 +6,6 @@ if (isset($_POST["title"])) {
         "author"=>$_POST["author"],
         "year"=>$_POST["year"],
         "uploaderId"=>$_POST["uploaderId"],
-        "fileURL"=>"",
     );
 
     if ($_POST["categoryId"] == 'new') {
@@ -20,6 +19,13 @@ if (isset($_POST["title"])) {
         move_uploaded_file($_FILES['image']['tmp_name'],$book['coverURL']);
     } else {
         echo "<div class='error'>Upload image error: ".$_FILES['image']['error']."</div>";
+    }
+
+    if (($_FILES['file']['error'] == 0) && ($_FILES['file']['type'] == "application/pdf")) {
+        $book['fileURL'] = "uploads/files/{$book[uploaderId]}-".$_FILES['file']['name'];
+        move_uploaded_file($_FILES['file']['tmp_name'],$book['fileURL']);
+    } else {
+        echo "<div class='error'>Upload file error: ".$_FILES['file']['error']."</div>";
     }
 
     add_book($book);
