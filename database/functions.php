@@ -34,6 +34,7 @@ function get_books_all($page, $books_per_page) {
     $conn = connect_db();
     $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
     FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
+    ORDER BY b.id DESC
     LIMIT ".($page*$books_per_page).",$books_per_page") or die($conn->error);
     $conn->close();
     return $result;
@@ -52,6 +53,7 @@ function get_books_by_cat($categoryId, $page, $books_per_page) {
     $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
         FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
         WHERE b.category_id = $categoryId
+        ORDER BY b.id DESC
         LIMIT ".($page*$books_per_page).",$books_per_page")
             or die("get_books_by_cat: ".$conn->error);
     $conn->close();
@@ -70,6 +72,7 @@ function get_books_by_uploader($uploaderId, $page, $books_per_page) {
     $result = $conn->query("SELECT b.id as id, title, author, year, c.name as category, cover_url, file_url, u.name as uploader
         FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id
         WHERE b.uploader_id = $uploaderId
+        ORDER BY b.id DESC
         LIMIT ".($page*$books_per_page).",$books_per_page");
     $conn->close();
     return $result;

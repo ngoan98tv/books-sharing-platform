@@ -9,22 +9,30 @@ if (category)
         }
     });
 
-const search = document.querySelector("input[name='search']");
+const inputImg = document.getElementById('inputImage');
 
-if (false)
-    search.addEventListener('keypress', (event) => {
-        const keyword = event.target.value;
-        const datalist = document.getElementById('hints');
-        fetch(`api/search-hint.php?search=${keyword}`, {method: 'GET'})
-            .then(response => {
-                response.json().then(json => {
-                    json.forEach(element => {
-                        // const option = document.createElement('OPTION');
-                        // option.value = element;
-                        // datalist.append(option);
-                    });
-                });
-            }).catch(err => {
-                console.log(err);
-            });
+if (inputImg) {
+    inputImg.addEventListener('change', (event) => {
+        document.getElementById('previewImg').src = window.URL.createObjectURL(event.target.files[0]);
     });
+}
+
+// const search = document.querySelector("input[name='search']");
+
+// if (false)
+//     search.addEventListener('keypress', (event) => {
+//         const keyword = event.target.value;
+//         const datalist = document.getElementById('hints');
+//         fetch(`api/search-hint.php?search=${keyword}`, {method: 'GET'})
+//             .then(response => {
+//                 response.json().then(json => {
+//                     json.forEach(element => {
+//                         // const option = document.createElement('OPTION');
+//                         // option.value = element;
+//                         // datalist.append(option);
+//                     });
+//                 });
+//             }).catch(err => {
+//                 console.log(err);
+//             });
+//     });

@@ -11,16 +11,19 @@
             case 1:
                 $_SESSION['logged_in'] = true;
                 $_SESSION['uploader'] = get_uploader($username);
-                header("Location: $_REQUEST[location]");
+                echo "<div class='success'>
+                        <p>Log-in success!</p>
+                        <p><a href='upload.php'>Upload book now</a> or <a href='index.php'>Go to homepage</a></p>
+                    </div>";
                 break;
             case 0:
-                echo "Password incorrect!";
+                echo "<div class='warning'>Password incorrect!</div>";
                 break;
             case -1:
-                echo "Invalid username!";
+                echo "<div class='warning'>Username isn't exist!</div>";
                 break;
             default:
-                echo "Something went wrong! Please try again.";
+                echo "<div class='warning'>Something went wrong! Please try again.</div>";
         }
     }
 ?>

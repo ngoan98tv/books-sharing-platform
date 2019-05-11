@@ -61,6 +61,10 @@ header
   text-align: center
   h1
     margin: 12px
+  nav
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
   a
     color: cyan
     margin: 6px
@@ -181,12 +185,24 @@ header
       background-color: rgb(232,240,254)
     em
       display: block
-      font-size: 12px
+      font-size: 14px
       margin-top: 12px
       text-align: center
     .warning
-      margin: 12px 0px
-      color: red
+      padding: 8px
+      color: white
+      background-color: darkred
+      text-align: center
+      a
+        color: white
+    .success
+      padding: 8px
+      color: white
+      background-color: darkgreen
+      text-align: center
+      a
+        color: white
+    
 
 .top-uploaders
   margin-bottom: 12px
@@ -212,11 +228,17 @@ header
     max-width: 400px
     margin: auto
     .complete
-      margin-top: 18px
-      color: blue
+      margin-top: 12px
+      padding: 8px
+      text-align: center
+      color: white
+      background-color: darkgreen
     .error
-      margin-top: 18px
-      color: red
+      margin-top: 12px
+      padding: 8px
+      text-align: center
+      color: white
+      background-color: darkred
     fieldset
       margin: 24px 6px
       padding: 16px
@@ -235,8 +257,13 @@ header
         width: 100%
         margin-bottom: 8px
         padding: 3px
+      #previewImg
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
+        margin: 6px
 label
   display: block
   margin-bottom: 6px
   margin-top: 12px
   
+.flex-contain
+  display: flex

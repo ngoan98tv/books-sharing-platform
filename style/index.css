@@ -72,6 +72,17 @@ header h1 {
   margin: 12px;
 }
 
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 header a {
   color: cyan;
   margin: 6px;
@@ -284,14 +295,31 @@ header div button[type='submit'], header div input[type='text'] {
 
 .login-form fieldset em {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 12px;
   text-align: center;
 }
 
 .login-form fieldset .warning {
-  margin: 12px 0px;
-  color: red;
+  padding: 8px;
+  color: white;
+  background-color: darkred;
+  text-align: center;
+}
+
+.login-form fieldset .warning a {
+  color: white;
+}
+
+.login-form fieldset .success {
+  padding: 8px;
+  color: white;
+  background-color: darkgreen;
+  text-align: center;
+}
+
+.login-form fieldset .success a {
+  color: white;
 }
 
 .top-uploaders {
@@ -331,13 +359,19 @@ header div button[type='submit'], header div input[type='text'] {
 }
 
 .upload form .complete {
-  margin-top: 18px;
-  color: blue;
+  margin-top: 12px;
+  padding: 8px;
+  text-align: center;
+  color: white;
+  background-color: darkgreen;
 }
 
 .upload form .error {
-  margin-top: 18px;
-  color: red;
+  margin-top: 12px;
+  padding: 8px;
+  text-align: center;
+  color: white;
+  background-color: darkred;
 }
 
 .upload form fieldset {
@@ -369,9 +403,21 @@ header div button[type='submit'], header div input[type='text'] {
   padding: 3px;
 }
 
+.upload form fieldset #previewImg {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  margin: 6px;
+}
+
 label {
   display: block;
   margin-bottom: 6px;
   margin-top: 12px;
+}
+
+.flex-contain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=index.css.map */
