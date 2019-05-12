@@ -43,7 +43,7 @@
                             <input type="file" id='inputFile' name="file" accept="application/pdf"/>
                         </div>
                         <label for='inputImage'>
-                            <img id='previewImg' src='<?php echo $book['cover_url'] ?>' style="width: 90px; height: 120px">
+                            <img id='previewImg' src='<?php echo file_exists($book['cover_url']) ? $book['cover_url'] : 'asset/image/placeholder.jpg'?>' style="width: 90px; height: 120px">
                         </label>
                     </div>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
