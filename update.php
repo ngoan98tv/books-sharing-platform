@@ -23,12 +23,12 @@
                     <label for='year'>Publishing Year</label>
                     <input type="number" name="year" id="year" value="<?php echo $book['year'] ?>" placeholder="Publishing year..."/>
                     <label for='categoryId'>Category (*)</label>
-                    <select id="categoryId" name="categoryId" value="<?php echo $book['category_id'] ?>" placeholder="Category..." required>
+                    <select id="categoryId" name="categoryId" placeholder="Category..." required>
                         <option disabled>Choose a category or create new</option>
                         <?php
                             $categories = get_categories();
                             while ($category = $categories->fetch_assoc()) {
-                                echo "<option value='$category[id]'>$category[name]</option>";
+                                echo "<option value='$category[id]' ".($book['category_id'] == $category[id] ? 'selected' : '').">$category[name]</option>";
                             }
                         ?>
                         <option value="new">New category...</option>
@@ -36,15 +36,15 @@
                     <input type="text" id="categoryName" name="categoryName" placeholder="New category..." style="display: none">
                     <div class='flex-contain'>
                         <div>
-                            <label for='inputImage'>Cover image (*)</label>
-                            <input type="file" required id='inputImage' name="image" accept="image/*"/>
+                            <label for='inputImage'>Change cover image (*)</label>
+                            <input type="file" id='inputImage' name="image" accept="image/*"/>
 
-                            <label for='inputFile'>File (PDF only) (*)</label>
-                            <input type="file" required id='inputFile' name="file" accept="application/pdf"/>
+                            <label for='inputFile'>Upload new file (PDF only) (*)</label>
+                            <input type="file" id='inputFile' name="file" accept="application/pdf"/>
                         </div>
-                        <div>
+                        <label for='inputImage'>
                             <img id='previewImg' src='<?php echo $book['cover_url'] ?>' style="width: 90px; height: 120px">
-                        </div>
+                        </label>
                     </div>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
                     <button type="submit" class="submit-btn">Submit</button>

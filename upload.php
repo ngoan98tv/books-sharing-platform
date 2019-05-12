@@ -41,9 +41,9 @@
                             <label for='inputFile'>File (PDF only) (*)</label>
                             <input type="file" required id='inputFile' name="file" accept="application/pdf"/>
                         </div>
-                        <div>
+                        <label for='inputImage'>
                             <img id='previewImg' src='./asset/image/placeholder.jpg' style="width: 90px; height: 120px">
-                        </div>
+                        </label>
                     </div>
                     <input type='hidden' name='uploaderId' value="<?php echo $_SESSION['uploader']['id']; ?>"/>
                     <button type="submit" class="submit-btn">Submit</button>
