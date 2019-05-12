@@ -213,7 +213,7 @@ function get_search_total($keyword) {
             WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%';") or die("get_search_total: ".$conn->error);
     
     $total = $result->fetch_assoc();
-
+    $conn->close();
     return $total['num'];
 }
 
@@ -224,8 +224,68 @@ function get_search_result($keyword, $page, $books_per_page) {
     FROM book b JOIN category c ON b.category_id = c.id JOIN uploader u ON b.uploader_id = u.id 
     WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%'
     LIMIT ".($page*$books_per_page).",$books_per_page");
-
+    $conn->close();
     return $result;
 }
 
+function clean($string) {
+    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+    $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+ 
+    return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+ }
+
+function update_book_title($id,$newTitle) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET title = '$newTitle' WHERE id = '$id';") 
+        or die("update_book_title error: ".$conn->error);
+
+    $conn->close();
+}
+
+function update_book_author($id,$newAuthor) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET author = '$newAuthor' WHERE id = '$id';") 
+        or die("update_book_author error: ".$conn->error);
+
+    $conn->close();
+}
+
+function update_book_year($id,$newYear) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET year = '$newYear' WHERE id = '$id';") 
+        or die("update_book_year error: ".$conn->error);
+
+    $conn->close();
+}
+
+function update_book_category($id,$newCategoryId) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET category_id = $newCategoryId WHERE id = '$id';") 
+        or die("update_book_category error: ".$conn->error);
+
+    $conn->close();
+}
+
+function update_book_cover($id,$newCoverURL) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET cover_url = '$newCoverURL' WHERE id = '$id';") 
+        or die("update_book_cover error: ".$conn->error);
+
+    $conn->close();
+}
+
+function update_book_file($id,$newFileURL) {
+    $conn = connect_db();
+
+    $conn->query("UPDATE book SET file_url = '$newFileURL' WHERE id = '$id';") 
+        or die("update_book_file error: ".$conn->error);
+
+    $conn->close();
+}
 ?>

@@ -12,8 +12,8 @@
     <div class='upload'>
         <?php if ($_SESSION['logged_in']) { ?>
             
-            <form action='upload.php' method='POST' enctype="multipart/form-data">
-            <?php //require 'handlers/update_handler.php'; ?>
+            <form action='update.php?id=<?php echo $_REQUEST['id']; ?>' method='POST' enctype="multipart/form-data">
+            <?php require 'handlers/update_handler.php'; ?>
                 <fieldset>
                     <legend>UPDATE YOUR BOOK</legend>
                     <label for='title'>Title (*)</label>
@@ -37,7 +37,7 @@
                     <div class='flex-contain'>
                         <div>
                             <label for='inputImage'>Change cover image (*)</label>
-                            <input type="file" id='inputImage' name="image" accept="image/*"/>
+                            <input type="file" id='inputImage' name="newImage" accept="image/*"/>
 
                             <label for='inputFile'>Upload new file (PDF only) (*)</label>
                             <input type="file" id='inputFile' name="file" accept="application/pdf"/>
@@ -52,8 +52,8 @@
             </form>
         <?php } else { ?>
             <div class="warning">
-                <p>You have to login to upload new books!</p>
-                <a href="login.php?location=upload.php">Login now</a> or <a href="sign-up.php?location=upload.php">Sign up</a>
+                <p>You have to login to update your books!</p>
+                <a href="login.php?location=<?php echo $_SERVER['REQUEST_URI']; ?>">Login now</a> or <a href="sign-up.php?location=<?php echo $_SERVER['REQUEST_URI']; ?>">Sign up</a>
             </div>
         <?php } ?>
     </div>
