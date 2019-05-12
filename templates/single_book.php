@@ -3,7 +3,7 @@ function show_a_book($book, $own = false) {
 $year = $book['year'] ? "<p class='hidden'>$book[year]</p>" : '';
 echo "<div class='single-book'>".
         "<div>".
-            "<img src='$book[cover_url]'>".
+            "<img src='".(file_exists($book['cover_url']) ? $book['cover_url'] : 'asset/image/placeholder.jpg')."'>".
             "<p class='title'>$book[title]</p>".
             "<p class='author'>$book[author]</p>".
             $year.
