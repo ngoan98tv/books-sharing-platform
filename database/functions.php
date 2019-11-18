@@ -2,8 +2,8 @@
 
 function connect_db() {
     $host = "localhost";
-    $user = "tvngoan";
-    $pass = "password";
+    $user = "admin";
+    $pass = "pass";
     $db = "books";
 
     $conn = new mysqli($host, $user, $pass, $db);

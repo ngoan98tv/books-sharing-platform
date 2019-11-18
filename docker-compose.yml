@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  books-lib:
+    container_name: books-lib
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/var/www/html
