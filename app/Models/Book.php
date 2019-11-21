@@ -1,8 +1,7 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Db;
 use PDO;
 
 class Book {
@@ -11,8 +10,8 @@ class Book {
     public $author; 
     public $year; 
     public $coverURL; 
-    public $uploaderId; 
-    public $categoryId; 
+    public $uploader; 
+    public $category; 
     public $fileURL;
 
     function __construct($book) {
@@ -21,13 +20,13 @@ class Book {
         $this->author       = $book['author']; 
         $this->year         = $book['year']; 
         $this->coverURL     = $book['cover_url']; 
-        $this->uploaderId   = $book['uploader_id']; 
-        $this->categoryId   = $book['category_id']; 
+        $this->uploader     = Uploader::findById($book['uploader_id']);
+        $this->category     = Category::findById($book['category_id']); 
         $this->fileURL      = $book['file_url'];
     }
 
     function save() {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("UPDATE
             book   (title,  author,  year,  cover_url,  uploader_id,  category_id,  file_url)
             VALUES (:title, :author, :year, :cover_url, :uploader_id, :category_id, :file_url)
@@ -49,7 +48,7 @@ class Book {
     }
 
     public static function create($book) {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("INSERT INTO 
             book   (title,  author,  year,  cover_url,  uploader_id,  category_id,  file_url)
             VALUES (:title, :author, :year, :cover_url, :uploader_id, :category_id, :file_url);");
@@ -64,7 +63,7 @@ class Book {
     }
 
     public static function findById($id) {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("SELECT * FROM book WHERE id = ':id';");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->bindParam(':id', $id);
@@ -74,7 +73,7 @@ class Book {
     }
 
     public static function find() {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("SELECT * FROM book;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();

@@ -1,8 +1,7 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Db;
 use PDO;
 
 class Uploader {
@@ -20,7 +19,7 @@ class Uploader {
         
     public static function sign_in($username, $password) {
         try {
-            $conn = Db\connect();
+            $conn = Db::connect();
             $stmt = $conn->prepare("SELECT * FROM uploader WHERE username = :username;");
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->bindParam(':username', $username);
@@ -42,7 +41,7 @@ class Uploader {
 
     public static function sign_up($uploader) {
         try {
-            $conn = Db\connect();
+            $conn = Db::connect();
             $stmt = $conn->prepare("INSERT INTO uploader (username, name, email, password)
                                     VALUES (:username, :name, :email, :password);");
             $stmt->bindParam(':username', $uploader['username']);
@@ -60,15 +59,17 @@ class Uploader {
         return sha1(md5($username.$password).$password);
     }
 
-    function get_uploader($username) {
-        $conn = connect_db();
-        $result = $conn->query("SELECT * FROM uploader WHERE username = '$username'");
-        $conn->close();
-        if ($result->num_rows > 0) {
-            $uploader = $result->fetch_assoc();
-            return $uploader;
-        } else {
-            return null;
+    public static function findById($id) {
+        try {
+            $conn = Db::connect();
+            $stmt = $conn->prepare("SELECT * FROM uploader WHERE id = :id");
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return new Uploader($result);
+        } catch(PDOException $e) {
+            return $e->getMessage();
         }
     }
 

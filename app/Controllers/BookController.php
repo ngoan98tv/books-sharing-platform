@@ -1,9 +1,11 @@
 <?php
 
-namespace controllers;
-use Models;
+namespace App\Controllers;
 
-class Books {
+use App\Models\Book;
+use App\Models\Category;
+
+class BookController {
 
     public function update() {
         
@@ -18,7 +20,7 @@ class Books {
         ];
     
         if ($_POST["categoryId"] == 'new') {
-            $book['categoryId'] = Models\Category::create($_POST['categoryName']);
+            $book['categoryId'] = Category::create($_POST['categoryName']);
         } else {
             $book['categoryId'] = $_POST["categoryId"];
         }
@@ -31,7 +33,7 @@ class Books {
                 $book['fileURL'] = "uploads/files/{$book[uploaderId]}-".clean($_FILES['file']['name']);
                 move_uploaded_file($_FILES['file']['tmp_name'],$book['fileURL']);
     
-                Models\Book::create($book);
+                Book::create($book);
     
                 header('Location: upload?state=1');
             } else {

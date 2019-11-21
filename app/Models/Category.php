@@ -1,8 +1,7 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Db;
 use PDO;
 
 class Category {
@@ -15,7 +14,7 @@ class Category {
     }
     
     public static function find() {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("SELECT * FROM category");
         $stmt->execute();
         $categories = [];
@@ -26,7 +25,7 @@ class Category {
     }
 
     public static function findById($id) {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("SELECT * FROM category WHERE id = :id");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->bindParam(':id', $id);
@@ -36,7 +35,7 @@ class Category {
     }
 
     public static function create($name) {
-        $conn = Db\connect();
+        $conn = Db::connect();
         $stmt = $conn->prepare("INSERT INTO category (name) VALUES (:name);");
         $stmt->bindParam(':name', $name);
         $stmt->execute();

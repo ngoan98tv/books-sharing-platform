@@ -1,14 +1,15 @@
 <?php
 
-namespace controllers;
-use Models;
+namespace App\Controllers;
 
-class Uploader {
+use App\Models\Uploader;
+
+class UploaderController {
 
     public function sign_in() {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $result = Models\Uploader::sign_in($username, $password);
+        $result = Uploader::sign_in($username, $password);
         switch ($result) {
             case 0:
                 header('Location: sign_in?state=3');
@@ -37,7 +38,7 @@ class Uploader {
         if ($comfirm_password != $uploader['password']) {
             header('Location: sign_up?error=password-not-match');
         } else {
-            $error = Models\Uploader::sign_up($uploader);
+            $error = Uploader::sign_up($uploader);
             if (!$error) {
                 header('Location: /');
             } else {

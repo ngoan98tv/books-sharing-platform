@@ -1,12 +1,12 @@
 <?php
 
-namespace controllers;
+namespace App\Controllers;
 
-use Views;
-use Models\Book;
-use Models\Category;
+use App\Views\View;
+use App\Models\Category;
+use App\Models\Book;
 
-class Pages {
+class PageController {
 
     public function home() {
 
@@ -16,29 +16,33 @@ class Pages {
         foreach ($books as $book) {
             array_push(
                 $book_items,
-                Views\create('single_book', (array) $book)
+                View::create('single_book', [
+                    'book' => $book,
+                    'currUploader' => $_SESSION['uploader']
+                ])
             );
         }
         
-        echo Views\render('home', [
+        echo View::render('home', [
             "book_items" => $book_items,
-            "uploader" => $_SESSION['uploader']
+            "uploader" => $_SESSION['uploader'],
+            'categories' => Category::find()
         ]);
     }
 
     public function sign_in() {
-        echo Views\render('sign_in', [
+        echo View::render('sign_in', [
             'state' => $_GET['state'],
             'uploader' => $_SESSION['uploader']
         ]);
     }
 
     public function sign_up() {
-        echo Views\render('sign_up');
+        echo View::render('sign_up');
     }
 
     public function upload() {
-        echo Views\render('upload', [
+        echo View::render('upload', [
             "uploader" => $_SESSION['uploader'],
             "categories" => Category::find()
         ]);
