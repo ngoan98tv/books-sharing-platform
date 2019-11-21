@@ -4,7 +4,7 @@ body {
   max-width: 780px;
   border: solid 1px black;
   background-color: lightgrey;
-  background-image: url("../asset/image/white_grid_paper-background_pattern.jpg");
+  background-image: url("assets/image/white_grid_paper-background_pattern.jpg");
 }
 
 .submit-btn {

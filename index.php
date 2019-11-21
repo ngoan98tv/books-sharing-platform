@@ -35,7 +35,7 @@
             (<?php echo $books->num_rows." of $total"; ?>)
         </h2>
     </div>
-    <div class="books-container">    
+    <div class="books-container">
         <?php 
             while ($book = $books->fetch_assoc()) {
                 show_a_book($book);

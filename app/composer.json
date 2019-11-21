@@ -3,7 +3,7 @@
          "noahbuscher/macaw": "dev-master"
      },
      "autoload": {
-         "psr-4": {
+        "psr-4": {
              "" : ""
          }
      }
