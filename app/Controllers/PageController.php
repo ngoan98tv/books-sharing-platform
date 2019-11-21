@@ -33,17 +33,33 @@ class PageController {
     public function sign_in() {
         echo View::render('sign_in', [
             'state' => $_GET['state'],
-            'uploader' => $_SESSION['uploader']
+            'uploader' => $_SESSION['uploader'],
+            'categories' => Category::find()
         ]);
     }
 
     public function sign_up() {
-        echo View::render('sign_up');
+        echo View::render('sign_up', [
+            'categories' => Category::find()
+        ]);
     }
 
     public function upload() {
         echo View::render('upload', [
             "uploader" => $_SESSION['uploader'],
+            "categories" => Category::find()
+        ]);
+    }
+
+    public function sign_out() {
+        $_SESSION['uploader'] = null;
+        header('Location: /');
+    }
+
+    public function update() {
+        echo View::render('update', [
+            "uploader" => $_SESSION['uploader'],
+            "book" => Book::findById($_GET['id']),
             "categories" => Category::find()
         ]);
     }

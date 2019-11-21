@@ -27,9 +27,13 @@ class Book {
 
     function save() {
         $conn = Db::connect();
-        $stmt = $conn->prepare("UPDATE
-            book   (title,  author,  year,  cover_url,  uploader_id,  category_id,  file_url)
-            VALUES (:title, :author, :year, :cover_url, :uploader_id, :category_id, :file_url)
+        $stmt = $conn->prepare("UPDATE book SET
+            title = :title, 
+            author = :author, 
+            year = :year, 
+            cover_url = :cover_url, 
+            category_id = :category_id, 
+            file_url = :file_url
             WHERE id = :id;"
         );
         $stmt->bindParam(':id',         $this->id);
@@ -37,14 +41,16 @@ class Book {
         $stmt->bindParam(':author',     $this->author); 
         $stmt->bindParam(':year',       $this->year); 
         $stmt->bindParam(':cover_url',   $this->coverURL); 
-        $stmt->bindParam(':uploader_id', $this->uploaderId); 
         $stmt->bindParam(':category_id', $this->categoryId); 
         $stmt->bindParam(':file_url',    $this->fileURL);
         $stmt->execute();
     }
 
     function delete() {
-
+        $conn = Db::connect();
+        $stmt = $conn->prepare("DELETE FROM book WHERE id = :id");
+        $stmt->bindParam(':id', $this->id);
+        $stmt->execute();
     }
 
     public static function create($book) {
@@ -64,7 +70,7 @@ class Book {
 
     public static function findById($id) {
         $conn = Db::connect();
-        $stmt = $conn->prepare("SELECT * FROM book WHERE id = ':id';");
+        $stmt = $conn->prepare("SELECT * FROM book WHERE id = :id;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -74,7 +80,7 @@ class Book {
 
     public static function find() {
         $conn = Db::connect();
-        $stmt = $conn->prepare("SELECT * FROM book;");
+        $stmt = $conn->prepare("SELECT * FROM book ORDER BY id DESC;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $books = array();

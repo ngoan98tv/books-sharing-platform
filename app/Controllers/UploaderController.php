@@ -47,10 +47,6 @@ class UploaderController {
         }
     }
 
-    public function sign_out() {
-        $_SESSION['uploader'] = null;
-        header('Location: /');
-    }
 }
 
 ?>

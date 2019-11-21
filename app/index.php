@@ -9,8 +9,9 @@
     Macaw::get('/',         'App\Controllers\PageController@home');
     Macaw::get('/sign_in',  'App\Controllers\PageController@sign_in');
     Macaw::get('/sign_up',  'App\Controllers\PageController@sign_up');
-    Macaw::get('/sign_out', 'App\Controllers\UploaderController@sign_out');
+    Macaw::get('/sign_out', 'App\Controllers\PageController@sign_out');
     Macaw::get('/upload',   'App\Controllers\PageController@upload');
+    Macaw::get('/update',   'App\Controllers\PageController@update');
 
     Macaw::post('/sign_in', 'App\Controllers\UploaderController@sign_in');
     Macaw::post('/sign_up', 'App\Controllers\UploaderController@sign_up');

@@ -2,6 +2,22 @@
     <div class='upload'>
         <?php if ($uploader) { ?>
             <form action='upload' method='POST' enctype="multipart/form-data">
+                <?php 
+                    switch ($_GET['state']) {
+                        case 1:
+                            echo "<div class='complete'>Upload completed!</div>";
+                            break;
+                        case 2:
+                            echo "<div class='error'>Error while upload file</div>";
+                            break;
+                        case 3:
+                            echo "<div class='error'>Error while upload image</div>";
+                            break;
+                        default:
+                            echo "";
+                            break;
+                    }
+                ?>
                 <fieldset>
                     <legend>UPLOAD A NEW BOOK</legend>
                     <label for='title'>Title (*)</label>
