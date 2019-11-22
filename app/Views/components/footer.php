@@ -4,7 +4,8 @@
             <a href="sign_in">Sign in</a>
             <a href="sign_up">Sign up</a>    
         <?php } else { ?>
-            <a href="sign_out">Logout (<em><?= $uploader->name ?></em>)</a>
+            <p style='color: white; text-decoration: none;'>Logged-in as <?= $uploader->name ?></p>
+            <a href="sign_out">Log out</a>
         <?php }?>
         <a href="upload">Upload</a>
     </div>
