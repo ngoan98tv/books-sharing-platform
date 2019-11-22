@@ -93,6 +93,12 @@ class BookController {
         $book->delete();
         header('Location: /');
     }
+
+    public function search() {
+        $keyword = $_GET['q'];
+        $books = Book::search($keyword);
+        echo json_encode($books);
+    }
 }
 
 function clean($string) {

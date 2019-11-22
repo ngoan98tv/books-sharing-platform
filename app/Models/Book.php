@@ -99,6 +99,20 @@ class Book {
         }
         return $books;
     }
+
+    public static function search($keyword) {
+        $conn = Db::connect();
+        $stmt = $conn->prepare("SELECT * FROM book
+                                WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%'");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        // $stmt->bindParam(':keyword', $keyword);
+        $stmt->execute();
+        $books = array();
+        while ($result = $stmt->fetch())  {
+            array_push($books, new Book($result));
+        }
+        return $books;
+    }
 }
 
 ?>

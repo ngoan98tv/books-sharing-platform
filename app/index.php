@@ -12,6 +12,7 @@
     Macaw::get('/sign_out', 'App\Controllers\PageController@sign_out');
     Macaw::get('/upload',   'App\Controllers\PageController@upload');
     Macaw::get('/update',   'App\Controllers\PageController@update');
+    Macaw::get('/search',   'App\Controllers\BookController@search');
 
     Macaw::post('/sign_in', 'App\Controllers\UploaderController@sign_in');
     Macaw::post('/sign_up', 'App\Controllers\UploaderController@sign_up');
