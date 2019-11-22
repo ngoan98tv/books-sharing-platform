@@ -78,9 +78,19 @@ class Book {
         return new Book($result);
     }
 
-    public static function find() {
+    public static function find($filter = []) {
         $conn = Db::connect();
-        $stmt = $conn->prepare("SELECT * FROM book ORDER BY id DESC;");
+        $conditions = '';
+        if (count($filter) > 0) {
+            foreach($filter as $key=>$val) {
+                $conditions = $conditions == ''
+                    ? $conditions."$key = $val"
+                    : $conditions." AND $key = $val";
+            }
+        }
+        $stmt = $conn->prepare($conditions == ''
+            ? "SELECT * FROM book ORDER BY id DESC;"
+            : "SELECT * FROM book WHERE $conditions ORDER BY id DESC;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $books = array();

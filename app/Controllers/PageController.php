@@ -10,7 +10,14 @@ class PageController {
 
     public function home() {
 
-        $books = Book::find();
+        if (isset($_GET['category'])) {
+            $books = Book::find([
+                'category_id' => $_GET['category']
+            ]);    
+        } else {
+            $books = Book::find();
+        }
+
         $book_items = array();
 
         foreach ($books as $book) {
