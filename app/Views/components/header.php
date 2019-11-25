@@ -20,8 +20,8 @@
         ?>
     </nav>
     <div>
-        <form action="index.php" method="GET">
-            <input type="text" name="search" placeholder="Search book's title or author...">
+        <form id='searcher'>
+            <input type="text" name="searchValue" placeholder="Search book's title or author...">
             <button type="submit">Search</button>
         </form>
     </div>

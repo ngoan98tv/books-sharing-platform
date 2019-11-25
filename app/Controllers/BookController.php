@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Views\View;
 
 class BookController {
 
@@ -96,8 +97,24 @@ class BookController {
 
     public function search() {
         $keyword = $_GET['q'];
+        $raw = $_GET['raw'] ?? false;
         $books = Book::search($keyword);
-        echo json_encode($books);
+        if ($raw) {
+            echo json_encode($books);
+        } else {
+            $book_items = array();
+            foreach ($books as $book) {
+                array_push(
+                    $book_items,
+                    View::create('single_book', [
+                        'book' => $book,
+                        'currUploader' => $_SESSION['uploader']
+                    ])
+                );
+            }
+            echo json_encode($book_items);
+        }
+
     }
 }
 
