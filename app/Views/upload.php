@@ -3,9 +3,9 @@
         <h2>Top Uploaders</h2>
         <div> 
             <?php 
-                foreach ($top_uploaders as $uploader) {
-                    echo "<a href='upload?uploader=$uploader->id'>
-                        $uploader->name <span>$uploader->uploaded</span>
+                foreach ($top_uploaders as $u) {
+                    echo "<a href='upload?uploader=$u->id'>
+                        $u->name <span>$u->uploaded</span>
                     </a>";
                 }
             ?>
