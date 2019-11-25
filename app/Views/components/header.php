@@ -15,7 +15,7 @@
         <a href="/">All books</a>
         <?php
             foreach($categories as $category) {
-                echo "<a href='?category=$category->id'>$category->name</a>";
+                echo "<a href='/?category=$category->id'>$category->name</a>";
             }
         ?>
     </nav>
