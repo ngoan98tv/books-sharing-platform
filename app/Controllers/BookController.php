@@ -78,13 +78,13 @@ class BookController {
     
                 Book::create($book);
     
-                header('Location: upload?state=1');
+                header('Location: upload?error=0');
             } else {
-                header('Location: upload?state=2');
+                header('Location: upload?error=1');
             }
     
         } else {
-            header('Location: upload?state=3');
+            header('Location: upload?error=2');
         }
     }
 

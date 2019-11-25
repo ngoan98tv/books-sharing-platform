@@ -4,6 +4,9 @@
         <legend>SIGN-UP</legend>
         <?php
             switch ($error) {
+                case '-1':
+                    echo '';
+                    break;
                 case '0':
                     echo "<div class='success'>Sign up success. <a href='sign_in'>Login now!</a></div>";
                     break;

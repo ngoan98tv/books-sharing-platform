@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Views\View;
 use App\Models\Category;
 use App\Models\Book;
+use App\Models\Uploader;
 
 class PageController {
 
@@ -48,14 +49,16 @@ class PageController {
     public function sign_up() {
         echo View::render('sign_up', [
             'categories' => Category::find(),
-            'error' => $_GET['error']
+            'error' => $_GET['error'] ?? '-1'
         ]);
     }
 
     public function upload() {
         echo View::render('upload', [
             "uploader" => $_SESSION['uploader'],
-            "categories" => Category::find()
+            "categories" => Category::find(),
+            "error" => $_GET['error'] ?? '-1',
+            "top_uploaders" => Uploader::get_top_uploaders()
         ]);
     }
 

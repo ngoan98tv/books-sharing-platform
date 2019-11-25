@@ -1,20 +1,36 @@
 <main>
+    <div class='top-uploaders'>
+        <h2>Top Uploaders</h2>
+        <div> 
+            <?php 
+                foreach ($top_uploaders as $uploader) {
+                    echo "<a href='upload?uploader=$uploader->id'>
+                        $uploader->name <span>$uploader->uploaded</span>
+                    </a>";
+                }
+            ?>
+        </div>
+    </div>
+    <hr>
     <div class='upload'>
         <?php if ($uploader) { ?>
             <form action='upload' method='POST' enctype="multipart/form-data">
                 <?php 
-                    switch ($_GET['state']) {
-                        case 1:
+                    switch ($error) {
+                        case '-1':
+                            echo '';
+                            break;
+                        case 0:
                             echo "<div class='complete'>Upload completed!</div>";
                             break;
-                        case 2:
+                        case 1:
                             echo "<div class='error'>Error while upload file</div>";
                             break;
-                        case 3:
+                        case 2:
                             echo "<div class='error'>Error while upload image</div>";
                             break;
                         default:
-                            echo "";
+                            echo "<div class='error'>$error</div>";
                             break;
                     }
                 ?>
