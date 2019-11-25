@@ -5,4 +5,5 @@
     <div class="books-container">
         <?php foreach($book_items as $item) echo $item; ?>
     </div>
+    <?php include 'Views/components/paging.php' ?>
 </main>

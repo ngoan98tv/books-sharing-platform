@@ -14,9 +14,13 @@ class PageController {
         if (isset($_GET['category'])) {
             $books = Book::find([
                 'category_id' => $_GET['category']
-            ]);    
+            ], $_GET['page']);
+            $totalBooks = Book::count([
+                'category_id' => $_GET['category']
+            ]);
         } else {
-            $books = Book::find();
+            $books = Book::find([], $_GET['page']);
+            $totalBooks = Book::count();
         }
 
         $book_items = array();
@@ -30,11 +34,15 @@ class PageController {
                 ])
             );
         }
-        
+
         echo View::render('home', [
             "book_items" => $book_items,
             "uploader" => $_SESSION['uploader'],
-            'categories' => Category::find()
+            'categories' => Category::find(),
+            'name' => 'page',
+            'curr' => $_GET['page'], 
+            'total' => $totalBooks/10, 
+            'trailing' => $_GET
         ]);
     }
 

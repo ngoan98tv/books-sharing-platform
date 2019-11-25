@@ -78,7 +78,30 @@ class Book {
         return new Book($result);
     }
 
-    public static function find($filter = []) {
+    public static function find($filter = [], $page = -1, $item_per_page = 10) {
+        $conn = Db::connect();
+        $conditions = '';
+        if (count($filter) > 0) {
+            foreach($filter as $key=>$val) {
+                $conditions = $conditions == ''
+                    ? $conditions."$key = $val"
+                    : $conditions." AND $key = $val";
+            }
+        }
+        $paging = $page >= 0 ? "LIMIT ".$page*$item_per_page.", $item_per_page" : '';
+        $stmt = $conn->prepare($conditions == ''
+            ? "SELECT * FROM book ORDER BY id DESC $paging;"
+            : "SELECT * FROM book WHERE $conditions ORDER BY id DESC $paging;");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $books = array();
+        while ($result = $stmt->fetch())  {
+            array_push($books, new Book($result));
+        }
+        return $books;
+    }
+
+    public static function count($filter = []) {
         $conn = Db::connect();
         $conditions = '';
         if (count($filter) > 0) {
@@ -89,15 +112,12 @@ class Book {
             }
         }
         $stmt = $conn->prepare($conditions == ''
-            ? "SELECT * FROM book ORDER BY id DESC;"
-            : "SELECT * FROM book WHERE $conditions ORDER BY id DESC;");
+            ? "SELECT COUNT(*) AS num FROM book ORDER BY id DESC;"
+            : "SELECT COUNT(*) AS num FROM book WHERE $conditions ORDER BY id DESC;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
-        $books = array();
-        while ($result = $stmt->fetch())  {
-            array_push($books, new Book($result));
-        }
-        return $books;
+        $result = $stmt->fetch();
+        return $result['num'];
     }
 
     public static function search($keyword) {
