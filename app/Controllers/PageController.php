@@ -47,7 +47,8 @@ class PageController {
 
     public function sign_up() {
         echo View::render('sign_up', [
-            'categories' => Category::find()
+            'categories' => Category::find(),
+            'error' => $_GET['error']
         ]);
     }
 

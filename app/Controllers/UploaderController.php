@@ -36,11 +36,11 @@ class UploaderController {
         ];
         $comfirm_password = $_POST['comfirm-password'];
         if ($comfirm_password != $uploader['password']) {
-            header('Location: sign_up?error=password-not-match');
+            header('Location: sign_up?error=1');
         } else {
             $error = Uploader::sign_up($uploader);
             if (!$error) {
-                header('Location: /');
+                header('Location: sign_up?error=0');
             } else {
                 header('Location: sign_up?error='.$error);
             }

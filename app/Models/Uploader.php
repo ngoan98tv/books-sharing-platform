@@ -8,13 +8,15 @@ class Uploader {
     public $id;
     public $username;
     public $name; 
-    public $email; 
+    public $email;
+    public $uploaded; 
 
     function __construct($uploader) {
         $this->id           = $uploader['id'];
         $this->username     = $uploader['username'];
         $this->name         = $uploader['name']; 
         $this->email        = $uploader['email']; 
+        $this->uploaded     = $uploader['uploaded']; 
     }
         
     public static function sign_in($username, $password) {
@@ -40,6 +42,8 @@ class Uploader {
     }
 
     public static function sign_up($uploader) {
+        if (!Uploader::is_valid_username($uploader['username'])) return 2;
+        if (!Uploader::is_valid_email($uploader['email'])) return 3;
         try {
             $conn = Db::connect();
             $stmt = $conn->prepare("INSERT INTO uploader (username, name, email, password)
@@ -75,40 +79,36 @@ class Uploader {
 
     
 
-    function is_valid_username($username) {
-        $conn = connect_db();
-        $result = $conn->query("SELECT * FROM uploader WHERE username = '$username'");
-        $conn->close();
-        if ($result->num_rows == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public static function is_valid_username($username) {
+        $conn = Db::connect();
+        $stmt = $conn->prepare("SELECT * FROM uploader WHERE username = :username;");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        return $stmt->rowCount() == 0;
     }
 
-    function is_valid_email($email) {
-        $conn = connect_db();
-        $result = $conn->query("SELECT * FROM uploader WHERE email = '$email'");
-        $conn->close();
-        if ($result->num_rows == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public static function is_valid_email($email) {
+        $conn = Db::connect();
+        $stmt = $conn->prepare("SELECT * FROM uploader WHERE email = :email;");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->rowCount() == 0;
     }
 
-    function get_top_uploaders() {
-        $conn = connect_db();
-        $result = $conn->query("SELECT uploader_id, username, name, COUNT(*) AS uploaded 
-                                FROM uploader b JOIN uploader u ON b.uploader_id = u.id
+    public static function get_top_uploaders() {
+        $conn = Db::connect();
+        $stmt = $conn->prepare("SELECT uploader_id as id, username, name, email, COUNT(*) AS uploaded 
+                                FROM book b JOIN uploader u ON b.uploader_id = u.id
                                 GROUP BY uploader_id 
-                                ORDER BY uploaded DESC 
+                                ORDER BY uploaded DESC
                                 LIMIT 10;");
-        $conn->close();
-        return $result;
+        $stmt->execute();
+        $uploaders = [];
+        while ($result = $stmt->fetch()) {
+            array_push($uploaders, new Uploader($result));
+        }
+        return $uploaders;
     }
-
-    
 
 }
 
