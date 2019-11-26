@@ -39,9 +39,11 @@ class PageController {
             "book_items" => $book_items,
             "uploader" => $_SESSION['uploader'],
             'categories' => Category::find(),
+            'selectedCategory' => isset($_GET['category']) ? Category::findById($_GET['category']) : null,
+            'totalBooks' => $totalBooks,
             'name' => 'page',
             'curr' => $_GET['page'], 
-            'total' => $totalBooks/10, 
+            'total' => $totalBooks/10,
             'trailing' => $_GET
         ]);
     }
