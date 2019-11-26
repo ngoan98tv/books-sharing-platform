@@ -1,4 +1,5 @@
 <div class='single-book'>
+    <div class='inner'>
     <div>
         <img src='<?= file_exists($book->coverURL) ? $book->coverURL : 'assets/image/placeholder.jpg' ?>'>
         <p class='title'><?= $book->title ?></p>
@@ -15,5 +16,6 @@
                 </p>
             </form>
         <?php } ?>
+    </div>
     </div>
 </div>

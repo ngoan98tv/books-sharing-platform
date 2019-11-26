@@ -65,11 +65,11 @@ header
     display: flex
     justify-content: center
     flex-wrap: wrap
-  a
-    color: cyan
-    margin: 6px
-    line-height: 1.5
-  div
+    a
+      color: cyan
+      margin: 6px
+      line-height: 1.5
+  form#searcher
     margin-top: 10px
     input[type='text']
       width: 200px
@@ -81,54 +81,65 @@ header
       margin: 0px
       display: inline
 
+#search-result
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: flex-start
+  overflow-x: auto
+  width: 100%
+  color: black
+  text-align: left
+
 .single-book
   width: 120px
-  height: 250px
   margin: 12px
-  cursor: pointer
-  overflow: hidden
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
-  border-radius: 8px
-  padding-bottom: 6px
-  background-color: white
-  font-family: sans-serif
-  &:hover
-    @keyframes moveup
-      from
-        top: 0px
-      to
-        top: -160px
-    p 
-      white-space: pre-wrap
-    div
-      animation: moveup 0.5s ease-out 0s 1 normal forwards
-    .hidden
-      display: block
-      font-size: 0.8em
-    .title
-      +line-limit(3)
-    .author
-      +line-limit(3)
-  div
-    position: relative
-    top: 0px
-  img
-    height: 180px
-    width: 120px
-  p
-    margin: 0.3em 8px
-    font-size: 0.9em
-    font-weight: 400
+  .inner
+    height: 250px
+    cursor: pointer
     overflow: hidden
-    text-overflow: ellipsis
-    line-height: 1.2em
-  .title
-    +line-limit(2)
-  .author
-    color: #757575
-    +line-limit(1)  
-  .hidden
-    display: none
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
+    border-radius: 8px
+    padding-bottom: 6px
+    background-color: white
+    font-family: sans-serif
+    &:hover
+      @keyframes moveup
+        from
+          top: 0px
+        to
+          top: -160px
+      p 
+        white-space: pre-wrap
+      div
+        animation: moveup 0.5s ease-out 0s 1 normal forwards
+      .hidden
+        display: block
+        font-size: 0.8em
+      .title
+        +line-limit(3)
+      .author
+        +line-limit(3)
+    div
+      position: relative
+      top: 0px
+    img
+      height: 180px
+      width: 120px
+    p
+      margin: 0.3em 8px
+      font-size: 0.9em
+      font-weight: 400
+      overflow: hidden
+      text-overflow: ellipsis
+      line-height: 1.2em
+    .title
+      +line-limit(2)
+    .author
+      color: #757575
+      +line-limit(1)  
+    .hidden
+      display: none
 
 .books-container
   display: flex

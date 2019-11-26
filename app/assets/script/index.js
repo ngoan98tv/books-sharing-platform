@@ -17,25 +17,17 @@ if (inputImg) {
     });
 }
 
-const searchForm = document.querySelector('#searcher');
-const container = document.querySelector("div[class=books-container]");
-const text = document.querySelector("input[name=searchValue]");
+const searchInput = document.querySelector("input[name=searchValue]");
 
-text.addEventListener('input', function (e) {
-    fetch('/search?q=' + e.target.value).then(res => {
-        res.json().then(json => {
-            container.innerHTML = '';
-            container.innerHTML = json.join('');
+searchInput.addEventListener('input', function (e) {
+    const container = document.getElementById('search-result');
+    if (e.target.value) {
+        fetch('/search?q=' + e.target.value).then(res => {
+            res.json().then(json => {
+                container.innerHTML = json.join('');
+            });
         });
-    });
-});
-
-searchForm.addEventListener('submit', function (e) {   
-    e.preventDefault();
-    fetch('/search?q=' + text.value).then(res => {
-        res.json().then(json => {
-            container.innerHTML = '';
-            container.innerHTML = json.join('');
-        });
-    });
+    } else {
+        container.innerHTML = '';
+    }
 });

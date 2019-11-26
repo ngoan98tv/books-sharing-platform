@@ -21,8 +21,9 @@
     </nav>
     <div>
         <form id='searcher'>
-            <input type="text" name="searchValue" placeholder="Search book's title or author...">
+            <input type="text" name="searchValue" placeholder="Search book's title or author..." required>
             <button type="submit">Search</button>
         </form>
+        <div id='search-result'></div>
     </div>
 </header>
