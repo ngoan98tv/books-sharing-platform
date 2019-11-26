@@ -17,7 +17,7 @@ if (inputImg) {
     });
 }
 
-const searchInput = document.querySelector("input[name=searchValue]");
+const searchInput = document.querySelector("input[name=search]");
 
 searchInput.addEventListener('input', function (e) {
     const container = document.getElementById('search-result');

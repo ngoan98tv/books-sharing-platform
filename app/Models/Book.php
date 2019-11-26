@@ -120,18 +120,31 @@ class Book {
         return $result['num'];
     }
 
-    public static function search($keyword) {
+    public static function search($keyword, $page = -1, $item_per_page = 10) {
         $conn = Db::connect();
+        $paging = $page >= 0 ? "LIMIT ".$page*$item_per_page.", $item_per_page" : '';
         $stmt = $conn->prepare("SELECT * FROM book
-                                WHERE title LIKE '%$keyword%' or author LIKE '%$keyword%'");
+                                WHERE title LIKE '%$keyword%' 
+                                OR author LIKE '%$keyword%' 
+                                $paging;");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        // $stmt->bindParam(':keyword', $keyword);
         $stmt->execute();
         $books = array();
         while ($result = $stmt->fetch())  {
             array_push($books, new Book($result));
         }
         return $books;
+    }
+
+    public static function countSearchResult($keyword) {
+        $conn = Db::connect();
+        $stmt = $conn->prepare("SELECT COUNT(*) as num FROM book
+                                WHERE title LIKE '%$keyword%' 
+                                OR author LIKE '%$keyword%';");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result['num'];
     }
 }
 

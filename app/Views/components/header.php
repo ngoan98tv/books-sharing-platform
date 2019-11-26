@@ -20,8 +20,8 @@
         ?>
     </nav>
     <div>
-        <form id='searcher'>
-            <input type="text" name="searchValue" placeholder="Search book's title or author..." required>
+        <form id='searcher' action="/">
+            <input type="text" name="search" placeholder="Search book's title or author..." required>
             <button type="submit">Search</button>
         </form>
         <div id='search-result'></div>

@@ -18,6 +18,9 @@ class PageController {
             $totalBooks = Book::count([
                 'category_id' => $_GET['category']
             ]);
+        } else if (isset($_GET['search'])) {
+            $books = Book::search($_GET['search'], $_GET['page']);
+            $totalBooks = Book::countSearchResult($_GET['search']);
         } else {
             $books = Book::find([], $_GET['page']);
             $totalBooks = Book::count();
@@ -41,8 +44,9 @@ class PageController {
             'categories' => Category::find(),
             'selectedCategory' => isset($_GET['category']) ? Category::findById($_GET['category']) : null,
             'totalBooks' => $totalBooks,
+            'search' => $_GET['search'] ?? null,
             'name' => 'page',
-            'curr' => $_GET['page'], 
+            'curr' => $_GET['page'] ?? 0, 
             'total' => $totalBooks/10,
             'trailing' => $_GET
         ]);
