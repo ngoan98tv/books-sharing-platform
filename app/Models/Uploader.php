@@ -32,12 +32,12 @@ class Uploader {
                 if ($result['password'] == Uploader::hash_password($password, $username)) {
                     return new Uploader($result);
                 } 
-                return -1;
+                return 'wrong-passwd';
             } else {
-                return 0;
+                return 'wrong-username';
             }
         } catch(PDOException $e) {
-            return -2;
+            return 'db-error';
         }
     }
 

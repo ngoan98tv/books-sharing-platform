@@ -4,25 +4,25 @@
             <legend>SIGN-IN</legend>
             <?php 
                 switch ($state) {
-                    case 0: 
-                        echo '';
+                    case 'db-error': 
+                        echo "<div class='warning'>Something went wrong! Please try again.</div>";
                         break;
-                    case 1:
+                    case 'success':
                         echo "<div class='success'>
                                 <p>Log-in success!</p>
                                 <p><a href='upload'>Upload book now</a> or <a href='/'>Go to homepage</a></p>
                             </div>";
                         break;
-                    case 2:
+                    case 'wrong-passwd':
                         echo "<div class='warning'>Password incorrect!</div>";
                         break;
-                    case 3:
+                    case 'wrong-username':
                         echo "<div class='warning'>Username isn't exist!</div>";
                         break;
                     default:
-                        echo "<div class='warning'>Something went wrong! Please try again.</div>";
+                        echo '';
                 } 
-                if ($state != 1) {
+                if ($state != 'success') {
             ?>
                 <label for='username'>Username (*)</label>
                 <input type="text" name="username" id="username" placeholder="Username" value="" required>

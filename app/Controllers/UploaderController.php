@@ -11,18 +11,14 @@ class UploaderController {
         $password = $_POST['password'];
         $result = Uploader::sign_in($username, $password);
         switch ($result) {
-            case 0:
-                header('Location: sign_in?state=3');
-                break;
-            case -1:
-                header('Location: sign_in?state=2');
-                break;
-            case -2:
-                header('Location: sign_in?state=4');
+            case 'wrong-username':
+            case 'wrong-passwd':
+            case 'db-error':
+                header('Location: sign_in?state='.$result);
                 break;
             default:
                 $_SESSION['uploader'] = $result;
-                header('Location: sign_in?state=1');
+                header('Location: sign_in?state=success');
                 break;
         }
     }
