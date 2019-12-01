@@ -4,6 +4,7 @@
             <form action='update?id=<?= $book->id ?>' method='POST' enctype="multipart/form-data">
                 <fieldset>
                     <legend class="text-center">UPDATE YOUR BOOK</legend>
+                    <?= $success ? "<div class='alert alert-success'>Cập nhật thành công.</div>" : '' ?>
                     <label for='title'>Title (*)</label>
                     <input class="form-control" type="text" name="title" id="title" value="<?= $book->title ?>" placeholder="Title..." required/>
                     <label for='author'>Author (*)</label>

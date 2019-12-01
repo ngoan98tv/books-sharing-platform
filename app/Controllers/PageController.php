@@ -114,7 +114,8 @@ class PageController {
         echo View::render('update', [
             "uploader" => $_SESSION['uploader'],
             "book" => Book::findById($_GET['id']),
-            "categories" => Category::find()
+            "categories" => Category::find(),
+            "success" => $_GET['success'] ?? false
         ]);
     }
 }

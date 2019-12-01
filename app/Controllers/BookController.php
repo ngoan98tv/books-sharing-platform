@@ -47,12 +47,12 @@ class BookController {
                 $fileURL = "uploads/files/{$book->uploader->id}-".clean($_FILES['file']['name']);
                 move_uploaded_file($_FILES['file']['tmp_name'],$fileURL);
                 $book->fileURL = $fileURL;
-                echo "<div class='complete'>Update file completed!</div>";
             } 
         }
          
         $book->save();
-        header('Location: update?id='.$book->id);
+
+        header('Location: update?id='.$book->id.'&success=1');
     }
 
     public function create() {
