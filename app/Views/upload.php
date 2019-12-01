@@ -15,35 +15,35 @@
     <div class='upload'>
         <?php if ($uploader) { ?>
             <form action='upload' method='POST' enctype="multipart/form-data">
-                <?php 
-                    switch ($error) {
-                        case '-1':
-                            echo '';
-                            break;
-                        case 0:
-                            echo "<div class='complete'>Upload completed!</div>";
-                            break;
-                        case 1:
-                            echo "<div class='error'>Error while upload file</div>";
-                            break;
-                        case 2:
-                            echo "<div class='error'>Error while upload image</div>";
-                            break;
-                        default:
-                            echo "<div class='error'>$error</div>";
-                            break;
-                    }
-                ?>
                 <fieldset>
-                    <legend>UPLOAD A NEW BOOK</legend>
+                    <legend class="text-center">UPLOAD A NEW BOOK</legend>
+                    <?php 
+                        switch ($error) {
+                            case '-1':
+                                echo '';
+                                break;
+                            case 0:
+                                echo "<div class='alert alert-success'>Upload completed!</div>";
+                                break;
+                            case 1:
+                                echo "<div class='alert alert-danger'>Error while upload file</div>";
+                                break;
+                            case 2:
+                                echo "<div class='alert alert-danger'>Error while upload image</div>";
+                                break;
+                            default:
+                                echo "<div class='alert alert-danger'>$error</div>";
+                                break;
+                        }
+                    ?>
                     <label for='title'>Title (*)</label>
-                    <input type="text" name="title" id="title" placeholder="Title..." required/>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Title..." required/>
                     <label for='author'>Author (*)</label>
-                    <input type="text" name="author" id="author" placeholder="Author..." required/>
+                    <input type="text" class="form-control" name="author" id="author" placeholder="Author..." required/>
                     <label for='year'>Publishing Year</label>
-                    <input type="number" name="year" id="year" placeholder="Publishing year..."/>
+                    <input type="number" class="form-control" name="year" id="year" placeholder="Publishing year..."/>
                     <label for='categoryId'>Category (*)</label>
-                    <select id="categoryId" name="categoryId" placeholder="Category..." required>
+                    <select id="categoryId" class="form-control" name="categoryId" placeholder="Category..." required>
                         <option disabled selected>Choose a category or create new</option>
                         <?php
                             foreach ($categories as $category) {
@@ -52,7 +52,7 @@
                         ?>
                         <option value="new">New category...</option>
                     </select>
-                    <input type="text" id="categoryName" name="categoryName" placeholder="Enter category name..." style="display: none">
+                    <input type="text" class="form-control" class="form-control" id="categoryName" name="categoryName" placeholder="Enter category name..." style="display: none">
                     <div class='flex-contain'>
                         <div>
                             <label for='inputImage'>Cover image (*)</label>
@@ -66,7 +66,7 @@
                         </label>
                     </div>
                     <input type='hidden' name='uploaderId' value="<?= $uploader->id ?>"/>
-                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="submit" class="submit-btn btn btn-primary">Submit</button>
                 </fieldset>
             </form>
         <?php } else { ?>

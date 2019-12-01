@@ -3,15 +3,15 @@
         <?php if ($uploader && $uploader->id == $book->uploader->id) { ?>
             <form action='update?id=<?= $book->id ?>' method='POST' enctype="multipart/form-data">
                 <fieldset>
-                    <legend>UPDATE YOUR BOOK</legend>
+                    <legend class="text-center">UPDATE YOUR BOOK</legend>
                     <label for='title'>Title (*)</label>
-                    <input type="text" name="title" id="title" value="<?= $book->title ?>" placeholder="Title..." required/>
+                    <input class="form-control" type="text" name="title" id="title" value="<?= $book->title ?>" placeholder="Title..." required/>
                     <label for='author'>Author (*)</label>
-                    <input type="text" name="author" id="author" value="<?= $book->author ?>" placeholder="Author..." required/>
+                    <input class="form-control" type="text" name="author" id="author" value="<?= $book->author ?>" placeholder="Author..." required/>
                     <label for='year'>Publishing Year</label>
-                    <input type="number" name="year" id="year" value="<?= $book->year ?>" placeholder="Publishing year..."/>
+                    <input class="form-control" type="number" name="year" id="year" value="<?= $book->year ?>" placeholder="Publishing year..."/>
                     <label for='categoryId'>Category (*)</label>
-                    <select id="categoryId" name="categoryId" placeholder="Category..." required>
+                    <select class="form-control" id="categoryId" name="categoryId" placeholder="Category..." required>
                         <option disabled>Choose a category or create new</option>
                         <?php
                             foreach($categories as $category) {
@@ -20,7 +20,7 @@
                         ?>
                         <option value="new">New category...</option>
                     </select>
-                    <input type="text" id="categoryName" name="categoryName" placeholder="New category..." style="display: none">
+                    <input class="form-control" type="text" id="categoryName" name="categoryName" placeholder="Enter category name..." style="display: none">
                     <div class='flex-contain'>
                         <div>
                             <label for='inputImage'>Change cover image (*)</label>
@@ -33,8 +33,8 @@
                             <img id='previewImg' src='<?= file_exists($book->coverURL) ? $book->coverURL : 'assets/image/placeholder.jpg'?>' style="width: 90px; height: 120px">
                         </label>
                     </div>
-                    <input type='hidden' name='uploaderId' value="<?= $uploader->id ?>"/>
-                    <button type="submit" class="submit-btn">Submit</button>
+                    <input class="form-control" type='hidden' name='uploaderId' value="<?= $uploader->id ?>"/>
+                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                 </fieldset>
             </form>
         <?php } else { ?>
