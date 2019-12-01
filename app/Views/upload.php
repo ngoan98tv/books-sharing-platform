@@ -69,6 +69,14 @@
                     <button type="submit" class="submit-btn btn btn-primary">Submit</button>
                 </fieldset>
             </form>
+            <hr>
+            <div class="subheader">
+                <h3>Your books (<?= $totalBooks ?>)</h3>
+            </div>
+            <div class="books-container">
+                <?php foreach($book_items as $item) echo $item; ?>
+            </div>
+            <?php if ($book_items) include 'Views/components/paging.php' ?>
         <?php } else { ?>
             <div class="warning">
                 <p>You have to login to upload new books!</p>

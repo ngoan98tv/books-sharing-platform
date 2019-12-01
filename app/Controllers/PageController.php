@@ -68,11 +68,40 @@ class PageController {
     }
 
     public function upload() {
+
+        if (isset($_SESSION['uploader'])) {
+            $books = Book::find([
+                'uploader_id' => $_SESSION['uploader']->id
+            ], $_GET['page'], 5);
+            $totalBooks = Book::count([
+                'uploader_id' => $_SESSION['uploader']->id
+            ]);
+
+            $book_items = array();
+
+            foreach ($books as $book) {
+                array_push(
+                    $book_items,
+                    View::create('single_book', [
+                        'book' => $book,
+                        'currUploader' => $_SESSION['uploader']
+                    ])
+                );
+            }
+        }
+
         echo View::render('upload', [
             "uploader" => $_SESSION['uploader'],
             "categories" => Category::find(),
             "error" => $_GET['error'] ?? '-1',
-            "top_uploaders" => Uploader::get_top_uploaders()
+            "top_uploaders" => Uploader::get_top_uploaders(),
+            "book_items" => $book_items,
+            'totalBooks' => $totalBooks ?? 0,
+            'search' => $_GET['search'] ?? null,
+            'name' => 'page',
+            'curr' => $_GET['page'] ?? 0, 
+            'total' => $totalBooks/5,
+            'trailing' => $_GET
         ]);
     }
 
